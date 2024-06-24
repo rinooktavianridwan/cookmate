@@ -14,6 +14,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
+            $table->string('bahan_dasar');
             $table->string('image')->nullable();
             $table->integer('review')->default(0); // Mengganti tipe data dari int ke integer dan menambahkan default value
             $table->integer('count_review')->default(0); // Mengganti tipe data dari int ke integer dan menambahkan default value

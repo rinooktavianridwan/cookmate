@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Recipe;
@@ -6,21 +7,20 @@ use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
-    /**
-     * Display a listing of the recipes.
-     */
-    public function index(Request $request)
+    public function index()
     {
-        // Mengambil daftar unik penyakit dari resep
-        $penyakitList = Recipe::select('penyakit')->distinct()->get();
+        $recipes = Recipe::all(); // Ambil semua data resep dari database
 
-        // Filter resep berdasarkan penyakit jika ada parameter penyakit
-        $query = Recipe::with('ingredients', 'nutritionFacts', 'reviews');
-        if ($request->has('penyakit') && $request->penyakit != '') {
-            $query->where('penyakit', $request->penyakit);
-        }
-        $recipes = $query->get();
+        return view('dashboard', compact('recipes'));
+    }
 
-        return view('recipes.index', compact('penyakitList', 'recipes'));
+    public function search(Request $request)
+    {
+        $query = $request->query('query'); // Ambil kata kunci pencarian dari request
+        $recipes = Recipe::where('title', 'like', "%$query%")->get(); // Query pencarian data resep
+
+        return response()->json($recipes); // Kirim response JSON berisi data resep
     }
 }
+
+
