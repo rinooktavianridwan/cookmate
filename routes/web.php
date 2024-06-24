@@ -4,9 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
 
-Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipes.search');
 Route::get('recipes/{id}', [RecipeController::class, 'show'])->name('recipes.show');
-
+Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipes.search');
 
 
 Route::get('/', function () {

@@ -81,7 +81,7 @@
                     let html = `
                         <div class="name-recipe">
                             <h1>${recipe.title}</h1>
-                            <h1>Cocok Untuk ${recipe.penyakit}</h1>
+                            <h1>Cocok Untuk ${recipe.penyakit ? recipe.penyakit : 'Umum'}</h1>
                             <h1>Review: ${recipe.count_review}</h1>
                         </div>
                         <div class="detail-recipe">
