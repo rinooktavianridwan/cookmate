@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 
-Route::get('recipes/{id}', [RecipeController::class, 'show'])->name('recipes.show');
-Route::get('/recipes/search', [RecipeController::class, 'search'])->name('recipes.search');
+Route::get('/recipes', [RecipeController::class, 'index']);
+Route::get('/unique-values', [RecipeController::class, 'getUniqueValues']);
+
 
 
 Route::get('/', function () {
@@ -20,9 +21,9 @@ Route::get('/letscook', function () {
     return view('UserPage.letscook');
 })->middleware(['auth', 'verified'])->name('letscook');
 
-Route::get('/dashboard', [RecipeController::class, 'showDashboard'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/search', 'RecipeController@search');
 

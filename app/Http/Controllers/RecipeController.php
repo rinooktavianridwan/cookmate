@@ -2,20 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
 use Illuminate\Http\Request;
+use App\Models\Recipe;
 
 class RecipeController extends Controller
 {
-    public function showDashboard()
+    public function index(Request $request)
     {
-        // Mengambil semua data recipes
-        $recipes = Recipe::all();
+        $query = Recipe::query();
 
-        // Ambil data unik dari kolom bahan_dasar
-        $bahanDasarUnik = Recipe::select('bahan_dasar')->distinct()->get();
+        if ($request->has('penyakit') && $request->penyakit != '') {
+            $query->where('penyakit', $request->penyakit);
+        }
 
-        // Kirim kedua data ke view
-        return view('dashboard', compact('recipes', 'bahanDasarUnik'));
+        if ($request->has('bahan') && $request->bahan != '') {
+            $query->where('bahan_dasar', $request->bahan);
+        }
+
+        if ($request->has('search') && $request->search != '') {
+            $query->where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%');
+        }
+
+        $recipes = $query->get();
+        return response()->json($recipes);
+    }
+
+
+    public function getUniqueValues()
+    {
+        $uniqueBahan = Recipe::select('bahan_dasar')->distinct()->get();
+        $uniquePenyakit = Recipe::select('penyakit')->distinct()->get();
+
+        return response()->json([
+            'bahan' => $uniqueBahan,
+            'penyakit' => $uniquePenyakit,
+        ]);
     }
 }
