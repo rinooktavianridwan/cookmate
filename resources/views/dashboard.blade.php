@@ -43,7 +43,9 @@
                         </div>
                         <div class="recipe-result">
                             <div class="all-recipe">
-                                
+                                <div class="name-recipe">
+                                    <h1>Nasi Goreng</h1>
+                                </div>
                             </div>
                             <div class="all-recipe">
                                 
