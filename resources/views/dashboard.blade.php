@@ -63,6 +63,7 @@
                                             <div class="recipe-item">
                                                <h3>${recipe.title}</h3>
                                                 <p>${recipe.description}</p>
+                                                <a href="/recipes/${recipe.id}/description" class="btn btn-primary">Description</a>
                                             </div>
                                         </div>`;
                             container.append(item);

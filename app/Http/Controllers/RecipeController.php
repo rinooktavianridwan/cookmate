@@ -20,9 +20,9 @@ class RecipeController extends Controller
         }
 
         if ($request->has('search') && $request->search != '') {
-            $query->where(function($q) use ($request) {
+            $query->where(function ($q) use ($request) {
                 $q->where('title', 'like', '%' . $request->search . '%')
-                  ->orWhere('description', 'like', '%' . $request->search . '%');
+                    ->orWhere('description', 'like', '%' . $request->search . '%');
             });
         }
 
@@ -40,5 +40,10 @@ class RecipeController extends Controller
             'penyakit' => $uniquePenyakit,
         ]);
     }
-}
 
+    public function show($id)
+    {
+        $recipe = Recipe::findOrFail($id);
+        return view('userpage.description', compact('recipe'));
+    }
+}
