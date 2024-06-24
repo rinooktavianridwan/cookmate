@@ -1,5 +1,5 @@
 * {
-    font-family: "Inter", sans-serif;
+    font-family: "Figtree", sans-serif;
 }
 
 body {
@@ -19,10 +19,25 @@ body {
     padding: 10px;
 }
 
+.dashboard {
+    margin: 5px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    text-decoration: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
 .login {
     margin: 5px;
     padding: 10px;
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
     color: white;
     background-color: black;
@@ -37,7 +52,7 @@ body {
 .register {
     margin: 5px;
     padding: 10px;
-    font-size: 20px;
+    font-size: 18px;
     color: black;
     text-decoration: none;
 }
