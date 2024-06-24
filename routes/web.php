@@ -7,10 +7,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/recipe', function () {
-    return view('UserPage.recipe');
-})->middleware(['auth', 'verified'])->name('recipe');
-
 Route::get('/descripe', function () {
     return view('UserPage.descripe');
 })->middleware(['auth', 'verified'])->name('descripe');
