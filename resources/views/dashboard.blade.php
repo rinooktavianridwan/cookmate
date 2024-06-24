@@ -38,15 +38,15 @@
                             </div>
                         </div>
                         <div class="recipe-result">
-                            <div class="all-recipe" id="recipe-container">
-                                @foreach ($recipes as $recipe)
-                                <div class="recipe-item">
+                            @foreach ($recipes as $recipe)
+                            <div class="all-recipe">
+                                <div class="recipe-item" id="recipe-container-{{ $loop->index }}">
                                     <h3>{{ $recipe->title }}</h3>
                                     <p>{{ $recipe->description }}</p>
                                     <!-- Tambahkan detail lain sesuai kebutuhan -->
                                 </div>
-                                @endforeach
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
