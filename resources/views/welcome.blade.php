@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Welcome Page</title>
+    <title>CookMate</title>
     <link rel="stylesheet" href="assets/css/welcome.css" type="text/css">
 </head>
 
@@ -21,12 +21,12 @@
                 </a>
                 @else
                 <a href="{{ route('login') }}" class="login">
-                    Log in
+                    Masuk
                 </a>
 
                 @if (Route::has('register'))
                 <a href="{{ route('register') }}" class="register">
-                    Register
+                    Daftar
                 </a>
                 @endif
                 @endauth
