@@ -19,9 +19,9 @@ Route::get('/recipes/{id}/description', [RecipeController::class, 'show'])
     ->middleware(['auth', 'verified'])
     ->name('description');
 
-Route::get('/letscook', function () {
-    return view('UserPage.letscook');
-})->middleware(['auth', 'verified'])->name('letscook');
+Route::get('/recipes/{id}/letscook', [RecipeController::class, 'letscook'])
+    ->middleware(['auth', 'verified'])
+    ->name('letscook');
 
 Route::get('/search', 'RecipeController@search');
 
@@ -31,4 +31,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -46,4 +46,11 @@ class RecipeController extends Controller
         $recipe = Recipe::with(['ingredients', 'instructions'])->findOrFail($id);
         return view('userpage.description', compact('recipe'));
     }
+
+
+    public function letscook($id)
+    {
+        $recipe = Recipe::with('instructions')->findOrFail($id);
+        return view('userpage.letscook', compact('recipe'));
+    }
 }
