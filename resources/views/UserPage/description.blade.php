@@ -15,9 +15,16 @@
                     <h2>Ingredients</h2>
                     <ul>
                         @foreach ($recipe->ingredients as $ingredient)
-                            <li>{{ $ingredient->quantity }} {{ $ingredient->name }} </li>
+                        <li>{{ $ingredient->name }} - {{ $ingredient->quantity }}</li>
                         @endforeach
                     </ul>
+                    <!-- Tampilkan instruksi -->
+                    <h2>Instructions</h2>
+                    <ol>
+                        @foreach ($recipe->instructions as $index => $instruction)
+                        <li>{{ $index + 1 }}. {{ $instruction->content }}</li>
+                        @endforeach
+                    </ol>
                 </div>
             </div>
         </div>

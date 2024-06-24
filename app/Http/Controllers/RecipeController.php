@@ -43,7 +43,7 @@ class RecipeController extends Controller
 
     public function show($id)
     {
-        $recipe = Recipe::with('ingredients')->findOrFail($id);
+        $recipe = Recipe::with(['ingredients', 'instructions'])->findOrFail($id);
         return view('userpage.description', compact('recipe'));
     }
 }
