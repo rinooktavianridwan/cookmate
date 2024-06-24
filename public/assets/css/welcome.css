@@ -1,0 +1,43 @@
+* {
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+}
+
+.logo {
+    margin: 5px;
+    padding: 10px;
+}
+
+.login {
+    margin: 5px;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    text-decoration: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.register {
+    margin: 5px;
+    padding: 10px;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+}
