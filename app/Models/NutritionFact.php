@@ -9,19 +9,6 @@ class NutritionFact extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'calories',
-        'protein',
-        'fat',
-        'carbohydrates',
-        'sugar',
-        'sodium',
-        'recipe_id',
-    ];
-
-    public function recipe()
-    {
-        return $this->belongsTo(Recipe::class);
-    }
+    protected $table = 'nutrition_facts';
 }
 
