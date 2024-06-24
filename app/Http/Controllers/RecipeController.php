@@ -7,21 +7,15 @@ use Illuminate\Http\Request;
 
 class RecipeController extends Controller
 {
-    public function index()
+    public function showDashboard()
     {
-        $recipes = Recipe::all(); // Ambil semua data resep dari database
+        // Mengambil semua data recipes
+        $recipes = Recipe::all();
 
-        return view('dashboard', compact('recipes'));
-    }
+        // Ambil data unik dari kolom bahan_dasar
+        $bahanDasarUnik = Recipe::select('bahan_dasar')->distinct()->get();
 
-    public function search(Request $request)
-    {
-        $query = $request->query('query'); // Ambil kata kunci pencarian dari request
-        $recipes = Recipe::where('title', 'like', "%$query%")->get(); // Query pencarian data resep
-
-        return response()->json($recipes); // Kirim response JSON berisi data resep
+        // Kirim kedua data ke view
+        return view('dashboard', compact('recipes', 'bahanDasarUnik'));
     }
 }
-
-
-

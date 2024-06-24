@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 
 Route::get('recipes/{id}', [RecipeController::class, 'show'])->name('recipes.show');
@@ -20,11 +20,11 @@ Route::get('/letscook', function () {
     return view('UserPage.letscook');
 })->middleware(['auth', 'verified'])->name('letscook');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [RecipeController::class, 'showDashboard'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
-
+Route::get('/search', 'RecipeController@search');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
