@@ -1,10 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Recipe') }}
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -15,21 +9,21 @@
                                 <div class="choose">
                                     <h1>Penyakit Khusus</h1>
                                     <select name="penyakit" id="penyakit">
-                                        <option value="">Semua Kategori</option>
+                                        <option value="">None</option>
                                         <!-- Opsi kategori akan diisi dengan data dari database -->
                                     </select>
                                 </div>
                                 <div class="choose">
                                     <h1>Bahan Dasar</h1>
                                     <select name="bahan" id="bahan">
-                                        <option value="">Semua Kota</option>
+                                        <option value="">None</option>
                                         <!-- Opsi kota akan diisi dengan data dari database -->
                                     </select>
                                 </div>
                                 <div class="choose">
                                     <h1>Kalori</h1>
                                     <select name="kalori" id="kalori">
-                                        <option value="">Semua Status</option>
+                                        <option value="">None</option>
                                         <!-- Opsi kategori akan diisi dengan data dari database -->
                                     </select>
                                 </div>
@@ -45,10 +39,18 @@
                             <div class="all-recipe">
                                 <div class="name-recipe">
                                     <h1>Nasi Goreng</h1>
+                                    <h1>Cosok Untuk Diabetes</h1>
+                                    <h1>Review</h1>
                                 </div>
-                            </div>
-                            <div class="all-recipe">
-                                
+                                <div class="detail-recipe">
+                                    <div class="image-recipe">
+                                        Gambar
+                                    </div>
+                                    <div class="detail-descripe">
+                                        <h1>Deskripsi</h1>
+                                        <p>Deskripsi</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
