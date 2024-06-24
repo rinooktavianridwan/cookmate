@@ -9,15 +9,6 @@ class Ingredient extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'quantity',
-        'recipe_id',
-    ];
-
-    public function recipe()
-    {
-        return $this->belongsTo(Recipe::class);
-    }
+    protected $table = 'ingredients';
 }
 
