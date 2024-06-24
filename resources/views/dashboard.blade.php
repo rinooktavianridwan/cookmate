@@ -22,7 +22,6 @@
                                     <h1>Kalori</h1>
                                     <select name="kalori" id="kalori">
                                         <option value="">None</option>
-                                        <!-- Opsi kategori akan diisi dengan data dari database -->
                                     </select>
                                 </div>
                             </div>
@@ -62,7 +61,7 @@
                         data.forEach(function(recipe) {
                             var item = `<div class="all-recipe">
                                             <div class="recipe-item">
-                                                h3>${recipe.title}</h3>
+                                               <h3>${recipe.title}</h3>
                                                 <p>${recipe.description}</p>
                                             </div>
                                         </div>`;

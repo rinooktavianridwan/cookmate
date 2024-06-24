@@ -20,14 +20,15 @@ class RecipeController extends Controller
         }
 
         if ($request->has('search') && $request->search != '') {
-            $query->where('title', 'like', '%' . $request->search . '%')
-                ->orWhere('description', 'like', '%' . $request->search . '%');
+            $query->where(function($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->search . '%')
+                  ->orWhere('description', 'like', '%' . $request->search . '%');
+            });
         }
 
         $recipes = $query->get();
         return response()->json($recipes);
     }
-
 
     public function getUniqueValues()
     {
@@ -40,3 +41,4 @@ class RecipeController extends Controller
         ]);
     }
 }
+
