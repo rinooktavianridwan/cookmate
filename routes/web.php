@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\ReviewController;
+
+Route::post('/reviews/{recipe}', [ReviewController::class, 'store'])->name('reviews.store');
 
 Route::get('/recipes', [RecipeController::class, 'index']);
 Route::get('/unique-values', [RecipeController::class, 'getUniqueValues']);

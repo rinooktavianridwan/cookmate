@@ -9,7 +9,15 @@ class Recipe extends Model
 {
     use HasFactory;
 
-    protected $table = 'recipes';
+    protected $fillable = [
+        'title',
+        'description',
+        'bahan_dasar',
+        'image',
+        'review',
+        'count_review',
+        'penyakit',
+    ];
 
     public function ingredients()
     {
@@ -19,5 +27,20 @@ class Recipe extends Model
     public function instructions()
     {
         return $this->hasMany(Instruction::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating');
+    }
+
+    public function countReviews()
+    {
+        return $this->reviews()->count();
     }
 }
