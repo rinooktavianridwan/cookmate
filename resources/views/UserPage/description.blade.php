@@ -27,14 +27,22 @@
                     </ol>
                 </div>
                 <div class="button-des">
-                    <button>Tambah Favorit</button>
+                    <button id="favorite-btn" data-recipe-id="{{ $recipe->id }}">
+                        {{ $recipe->isFavoritedByUser(auth()->user()) ? 'Hapus Favorit' : 'Tambah Favorit' }}
+                    </button>
                     <button id="start-cooking-btn">Mulai Memasak</button>
                     <div class="rate">
                         @php
-                            $userReview = auth()->user()->reviews()->where('recipe_id', $recipe->id)->first();
+                            $userReview = auth()
+                                ->user()
+                                ->reviews()
+                                ->where('recipe_id', $recipe->id)
+                                ->first();
                         @endphp
                         @for ($i = 5; $i >= 1; $i--)
-                            <input type="radio" id="star{{ $i }}" name="rate" value="{{ $i }}" {{ $userReview && $userReview->rating == $i ? 'checked' : '' }} />
+                            <input type="radio" id="star{{ $i }}" name="rate"
+                                value="{{ $i }}"
+                                {{ $userReview && $userReview->rating == $i ? 'checked' : '' }} />
                             <label for="star{{ $i }}" title="text">{{ $i }} stars</label>
                         @endfor
                     </div>
@@ -77,6 +85,28 @@
                     }
                 });
             });
+        //     $('#favorite-btn').click(function() {
+        //         var recipeId = $(this).data('recipe-id');
+        //         var button = $(this);
+        //         var action = button.text() === 'Tambah Favorit' ? 'menambahkan ke' : 'menghapus dari';
+
+        //         if (confirm(`Apakah Anda yakin ingin ${action} favorit?`)) {
+        //             $.ajax({
+        //                 url: `/recipes/${recipeId}/favorite`,
+        //                 type: 'POST',
+        //                 data: {
+        //                     _token: $('meta[name="csrf-token"]').attr('content')
+        //                 },
+        //                 success: function(response) {
+        //                     if (response.status === 'added') {
+        //                         button.text('Hapus Favorit');
+        //                     } else {
+        //                         button.text('Tambah Favorit');
+        //                     }
+        //                 }
+        //             });
+        //         }
+        //     });
         });
     </script>
     <style>
