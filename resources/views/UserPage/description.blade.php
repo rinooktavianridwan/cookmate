@@ -30,16 +30,13 @@
                     <button>Tambah Favorit</button>
                     <button id="start-cooking-btn">Mulai Memasak</button>
                     <div class="rate">
-                        <input type="radio" id="star5" name="rate" value="5" />
-                        <label for="star5" title="text">5 stars</label>
-                        <input type="radio" id="star4" name="rate" value="4" />
-                        <label for="star4" title="text">4 stars</label>
-                        <input type="radio" id="star3" name="rate" value="3" />
-                        <label for="star3" title="text">3 stars</label>
-                        <input type="radio" id="star2" name="rate" value="2" />
-                        <label for="star2" title="text">2 stars</label>
-                        <input type<radio" id="star1" name="rate" value="1" />
-                        <label for="star1" title="text">1 star</label>
+                        @php
+                            $userReview = auth()->user()->reviews()->where('recipe_id', $recipe->id)->first();
+                        @endphp
+                        @for ($i = 5; $i >= 1; $i--)
+                            <input type="radio" id="star{{ $i }}" name="rate" value="{{ $i }}" {{ $userReview && $userReview->rating == $i ? 'checked' : '' }} />
+                            <label for="star{{ $i }}" title="text">{{ $i }} stars</label>
+                        @endfor
                     </div>
                     <button id="submit-review">Submit Review</button>
                 </div>
@@ -124,5 +121,4 @@
             color: #c59b08;
         }
     </style>
-
 </x-app-layout>
