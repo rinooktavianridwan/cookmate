@@ -18,6 +18,18 @@
                             <li>{{ $ingredient->name }} - {{ $ingredient->quantity }}</li>
                         @endforeach
                     </ul>
+                    <!-- Tampilkan informasi gizi -->
+                    @if ($recipe->nutritionFact)
+                        <h2>Nutrition Facts</h2>
+                        <ul>
+                            <li>Calories: {{ $recipe->nutritionFact->calories }}</li>
+                            <li>Protein: {{ $recipe->nutritionFact->protein }}g</li>
+                            <li>Fat: {{ $recipe->nutritionFact->fat }}g</li>
+                            <li>Carbohydrates: {{ $recipe->nutritionFact->carbohydrates }}g</li>
+                            <li>Sugar: {{ $recipe->nutritionFact->sugar }}g</li>
+                            <li>Sodium: {{ $recipe->nutritionFact->sodium }}mg</li>
+                        </ul>
+                    @endif
                     <!-- Tampilkan instruksi -->
                     <h2>Instructions</h2>
                     <ol>
@@ -85,28 +97,29 @@
                     }
                 });
             });
-        //     $('#favorite-btn').click(function() {
-        //         var recipeId = $(this).data('recipe-id');
-        //         var button = $(this);
-        //         var action = button.text() === 'Tambah Favorit' ? 'menambahkan ke' : 'menghapus dari';
 
-        //         if (confirm(`Apakah Anda yakin ingin ${action} favorit?`)) {
-        //             $.ajax({
-        //                 url: `/recipes/${recipeId}/favorite`,
-        //                 type: 'POST',
-        //                 data: {
-        //                     _token: $('meta[name="csrf-token"]').attr('content')
-        //                 },
-        //                 success: function(response) {
-        //                     if (response.status === 'added') {
-        //                         button.text('Hapus Favorit');
-        //                     } else {
-        //                         button.text('Tambah Favorit');
-        //                     }
-        //                 }
-        //             });
-        //         }
-        //     });
+            $('#favorite-btn').click(function() {
+                var recipeId = $(this).data('recipe-id');
+                var button = $(this);
+                var action = button.text() === 'Tambah Favorit' ? 'menambahkan ke' : 'menghapus dari';
+
+                if (confirm(`Apakah Anda yakin ingin ${action} favorit?`)) {
+                    $.ajax({
+                        url: `/recipes/${recipeId}/favorite`,
+                        type: 'POST',
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            if (response.status === 'added') {
+                                button.text('Hapus Favorit');
+                            } else {
+                                button.text('Tambah Favorit');
+                            }
+                        }
+                    });
+                }
+            });
         });
     </script>
     <style>
