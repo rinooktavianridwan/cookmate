@@ -53,4 +53,9 @@ class Recipe extends Model
     {
         return $this->favoritedBy()->where('user_id', $user->id)->exists();
     }
+
+    public function nutritionFact()
+    {
+        return $this->hasOne(NutritionFact::class);
+    }
 }

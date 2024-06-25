@@ -43,11 +43,10 @@ class RecipeController extends Controller
 
     public function show($id)
     {
-        $recipe = Recipe::with(['ingredients', 'instructions'])->findOrFail($id);
+        $recipe = Recipe::with(['ingredients', 'instructions', 'nutritionFact'])->findOrFail($id);
         $userRating = auth()->user()->reviews()->where('recipe_id', $id)->value('rating');
         return view('userpage.description', compact('recipe'));
     }
-
 
     public function letscook($id)
     {
