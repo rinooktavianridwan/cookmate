@@ -118,7 +118,12 @@
             justify-content: space-between; /* Distribusi tombol jika ada dua */
         }
         .navigation-buttons button {
+            border-radius: 5px;
+            height: 30px;
+            width: 100px;
             margin-left: 10px; /* Spasi antar tombol */
+            background-color: black;
+            color: white
         }
     </style>
 </x-app-layout>
