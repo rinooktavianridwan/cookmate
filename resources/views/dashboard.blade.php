@@ -1,4 +1,5 @@
 <x-app-layout>
+    <link rel="stylesheet" href="assets/css/dashboard.css" type="text/css">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -42,6 +43,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            var recipeImageMap = {
+                '1': 'ayam-betutu.jpg',
+                '2': 'cah-sawi-hijau.jpeg',
+                // Tambahkan lebih banyak pemetaan sesuai kebutuhan
+            };
+
             function loadRecipes() {
                 var penyakit = $('#penyakit').val();
                 var bahan = $('#bahan').val();
@@ -59,13 +67,20 @@
                         var container = $('#recipe-container');
                         container.empty(); // Hapus konten sebelumnya
                         data.forEach(function(recipe) {
+                            // Dapatkan nama file gambar dari peta menggunakan ID resep
+                            var imageName = recipeImageMap[recipe.id] || 'default.jpg'; // Gunakan 'default.jpg' jika ID tidak ditemukan
                             var item = `<div class="all-recipe">
-                                            <div class="recipe-item">
-                                               <h3>${recipe.title}</h3>
-                                                <p>${recipe.description}</p>
-                                                <a href="/recipes/${recipe.id}/description" class="btn btn-primary">Description</a>
-                                            </div>
-                                        </div>`;
+                        <div class="recipe-item" style="display: flex; align-items: flex-start; justify-content: space-between;">
+                            <div style="flex: 3; margin-right: 20px;">
+                                <h3>${recipe.title}</h3>
+                                <p>${recipe.description}</p>
+                                <a href="/recipes/${recipe.id}/description" class="btn btn-primary">See more</a>
+                            </div>
+                            <div style="flex: 1;">
+                                <img src="/assets/images/${imageName}" alt="Gambar ${recipe.title}" style="max-width: 100%; height: auto; border-radius: 8px;">
+                            </div>
+                        </div>
+                    </div>`;
                             container.append(item);
                         });
                     }
