@@ -36,12 +36,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-
-            var recipeImageMap = {
-                '1': 'ayam-betutu.jpg',
-                '2': 'cah-sawi-hijau.jpeg',
-                // Tambahkan lebih banyak pemetaan sesuai kebutuhan
-            };
+            var recipeImageMap = {};
 
             function loadRecipes() {
                 var penyakit = $('#penyakit').val();
@@ -118,9 +113,22 @@
                 });
             }
 
-            // Load unique values and recipes on page load
+            function loadImageMap() {
+                $.ajax({
+                    url: '/image-map',
+                    type: 'GET',
+                    success: function(data) {
+                        recipeImageMap = data; // Simpan peta gambar ke variabel global
+                    },
+                    complete: function() {
+                        loadRecipes(); // Load resep setelah peta gambar tersedia
+                    }
+                });
+            }
+
+            // Load unique values and image map on page load
             loadUniqueValues();
-            loadRecipes();
+            loadImageMap();
 
             // Reload recipes when dropdown value changes
             $('#penyakit, #bahan').change(function() {

@@ -7,6 +7,18 @@ use App\Models\Recipe;
 
 class RecipeController extends Controller
 {
+    // Fungsi utilitas untuk mendapatkan peta gambar
+    private function getRecipeImageMap()
+    {
+        return [
+            '1' => 'ayam-betutu.jpg',
+            '2' => 'cah-sawi-hijau.jpeg',
+            '3' => 'sup-ikan.jpg',
+            '4' => 'tori-jiru.jpg',
+            // Tambahkan lebih banyak pemetaan sesuai kebutuhan
+        ];
+    }
+
     public function index(Request $request)
     {
         $query = Recipe::query();
@@ -54,11 +66,7 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::with(['ingredients', 'instructions', 'nutritionFact'])->findOrFail($id);
         $userRating = auth()->user()->reviews()->where('recipe_id', $id)->value('rating');
-        $recipeImageMap = [
-            '1' => 'ayam-betutu.jpg',
-            '2' => 'cah-sawi-hijau.jpeg',
-            // Tambahkan lebih banyak pemetaan sesuai kebutuhan
-        ];
+        $recipeImageMap = $this->getRecipeImageMap();
         $image = $recipeImageMap[$id] ?? 'default.jpg'; // Gunakan 'default.jpg' jika ID tidak ditemukan
         return view('userpage.description', compact('recipe', 'image'));
     }
@@ -67,5 +75,12 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::with('instructions')->findOrFail($id);
         return view('userpage.letscook', compact('recipe'));
+    }
+
+    // Endpoint untuk mendapatkan peta gambar
+    public function getImageMap()
+    {
+        $imageMap = $this->getRecipeImageMap();
+        return response()->json($imageMap);
     }
 }
