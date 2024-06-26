@@ -45,7 +45,13 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::with(['ingredients', 'instructions', 'nutritionFact'])->findOrFail($id);
         $userRating = auth()->user()->reviews()->where('recipe_id', $id)->value('rating');
-        return view('userpage.description', compact('recipe'));
+        $recipeImageMap = [
+            '1' => 'ayam-betutu.jpg',
+            '2' => 'cah-sawi-hijau.jpeg',
+            // Tambahkan lebih banyak pemetaan sesuai kebutuhan
+        ];
+        $image = $recipeImageMap[$id] ?? 'default.jpg'; // Gunakan 'default.jpg' jika ID tidak ditemukan
+        return view('userpage.description', compact('recipe', 'image'));
     }
 
     public function letscook($id)
