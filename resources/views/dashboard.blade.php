@@ -1,6 +1,6 @@
 <x-app-layout>
     <link rel="stylesheet" href="assets/css/dashboard.css" type="text/css">
-    <div class="py-12">
+    <div class="py-12" style="padding-top: 85px;">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
@@ -8,30 +8,23 @@
                         <div class="search-recipe">
                             <div class="search">
                                 <div class="choose">
-                                    <h1>Penyakit Khusus</h1>
-                                    <select name="penyakit" id="penyakit">
+                                    <h1 style="margin-bottom: 5px">Bahan Dasar</h1>
+                                    <select name="bahan" id="bahan" style="padding: 7.5px 10px; border-radius: 10px;">
                                         <option value="">None</option>
                                     </select>
                                 </div>
                                 <div class="choose">
-                                    <h1>Bahan Dasar</h1>
-                                    <select name="bahan" id="bahan">
-                                        <option value="">None</option>
-                                    </select>
-                                </div>
-                                <div class="choose">
-                                    <h1>Kalori</h1>
-                                    <select name="kalori" id="kalori">
+                                    <h1 style="margin-bottom: 5px">Penyakit Khusus</h1>
+                                    <select name="penyakit" id="penyakit" style="padding: 7.5px 10px; border-radius: 10px;">
                                         <option value="">None</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="search-text">
-                                <h1>Search for a recipe</h1>
                                 <input type="text" placeholder="Cari Resep" id="search">
                             </div>
                         </div>
-                        <div class="recipe-result" id="recipe-container">
+                        <div class="recipe-result" id="recipe-container" style="border: none; padding:5px;">
                             <!-- Hasil pencarian akan dimuat di sini -->
                         </div>
                     </div>
@@ -70,17 +63,19 @@
                             // Dapatkan nama file gambar dari peta menggunakan ID resep
                             var imageName = recipeImageMap[recipe.id] || 'default.jpg'; // Gunakan 'default.jpg' jika ID tidak ditemukan
                             var item = `<div class="all-recipe">
-                        <div class="recipe-item" style="display: flex; align-items: flex-start; justify-content: space-between;">
-                            <div style="flex: 3; margin-right: 20px;">
-                                <h3>${recipe.title}</h3>
-                                <p>${recipe.description}</p>
-                                <a href="/recipes/${recipe.id}/description" class="btn btn-primary">See more</a>
-                            </div>
-                            <div style="flex: 1;">
-                                <img src="/assets/images/${imageName}" alt="Gambar ${recipe.title}" style="max-width: 100%; height: auto; border-radius: 8px;">
-                            </div>
-                        </div>
-                    </div>`;
+                                            <div class="recipe-item" style="display: flex; align-items: flex-start; justify-content: space-between;">
+                                                <div style="flex: 3; margin-right: 20px;">
+                                                    <h3 style="padding-bottom: 10px; font-size: 28px; font-weight: 700; ">${recipe.title}</h3>
+                                                    <p style="margin-bottom: 10px; font-size: 18px; text-align: justify">${recipe.description}</p>
+                                                    <a href="/recipes/${recipe.id}/description" class="btn btn-primary" style="padding-top: 50px; font-size: 20px; font-weight: 600";>See more</a>
+                                                </div>
+                                                <div style="flex: 1;">
+                                                    <img src="/assets/images/${imageName}" alt="Gambar ${recipe.title}" style="width: 500px; height: 200px; object-fit: cover; margin-right: 20px; border: 3px solid white; border-radius: 8px;">
+                                                    <p style="padding-top: 10px; text-align: center"; justify-content: center; align-items: center>Rating: ${recipe.review} (${recipe.count_review})</p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>`;
                             container.append(item);
                         });
                     }

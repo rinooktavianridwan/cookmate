@@ -54,5 +54,11 @@ body {
     padding: 10px;
     font-size: 18px;
     color: black;
+    background-color: white;
+    border-radius: 10px;
     text-decoration: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }

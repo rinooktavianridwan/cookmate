@@ -13,7 +13,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 </head>
 
-<body>
+<body style="background-color: #EEE2BC;">
     <div class="container">
         <img src="assets/images/logo-fix.png" alt="Logo" class="logo">
         <div style="margin-top: 20px;">

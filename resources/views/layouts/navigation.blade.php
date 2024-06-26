@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="fixed top-0 w-full z-50" style="background-color: rgb(249,201,1);">
+<nav x-data="{ open: false }" class="fixed top-0 w-full z-50" style="background-color: #EEE2BC;">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">

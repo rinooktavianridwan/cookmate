@@ -9,6 +9,7 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    padding: 10px;
 }
 
 .search{
@@ -23,9 +24,6 @@
 }
 
 .recipe-result{
-    border: black 1px solid;
-}
-.recipe-result{
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -33,9 +31,9 @@
 }
 .all-recipe{
     border-radius: 20px;
-    height: 300px;
-    background-color: skyblue;
-    padding: 20px;
+    height: 275px;
+    background-color: #EEE2BC;
+    padding: 25px;
 }
 
 .name-recipe{
