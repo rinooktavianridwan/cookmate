@@ -62,22 +62,27 @@
                         data.forEach(function(recipe) {
                             // Dapatkan nama file gambar dari peta menggunakan ID resep
                             var imageName = recipeImageMap[recipe.id] || 'default.jpg'; // Gunakan 'default.jpg' jika ID tidak ditemukan
+
+                            // Tentukan teks untuk penyakit
+                            var penyakitText = recipe.penyakit ? recipe.penyakit : '-'; // Jika penyakit null, gunakan "-"
+
                             var item = `<div class="all-recipe">
                                             <div class="recipe-item" style="display: flex; align-items: flex-start; justify-content: space-between;">
                                                 <div style="flex: 3; margin-right: 20px;">
-                                                    <h3 style="padding-bottom: 10px; font-size: 28px; font-weight: 700; ">${recipe.title}</h3>
+                                                    <h3 style="padding-bottom: 10px; font-size: 28px; font-weight: 700;">${recipe.title}</h3>
+                                                    <p style="margin-bottom: 10px; font-size: 18px; font-weight: 600; text-align: justify;">Baik untuk penderita penyakit: ${penyakitText}</p>
                                                     <p style="margin-bottom: 10px; font-size: 18px; text-align: justify">${recipe.description}</p>
-                                                    <a href="/recipes/${recipe.id}/description" class="btn btn-primary" style="padding-top: 50px; font-size: 20px; font-weight: 600";>See more</a>
+                                                    <a href="/recipes/${recipe.id}/description" class="btn btn-primary" style="margin-top: 50px; font-size: 20px; font-weight: 600">See more</a>
                                                 </div>
                                                 <div style="flex: 1;">
                                                     <img src="/assets/images/${imageName}" alt="Gambar ${recipe.title}" style="width: 500px; height: 200px; object-fit: cover; margin-right: 20px; border: 3px solid white; border-radius: 8px;">
-                                                    <p style="padding-top: 10px; text-align: center"; justify-content: center; align-items: center>Rating: ${recipe.review} (${recipe.count_review})</p>
-                                                </div>
+                                                    <p style="padding-top: 10px; text-align: center"; justify-content: center; align-items: center; font-size: 18px>Rating: ${recipe.review} (${recipe.count_review})</p>
                                                 </div>
                                             </div>
                                         </div>`;
                             container.append(item);
                         });
+
                     }
                 });
             }
@@ -100,10 +105,14 @@
 
                         // Tambahkan opsi unik dari database
                         data.penyakit.forEach(function(item) {
-                            penyakitDropdown.append(`<option value="${item.penyakit}">${item.penyakit}</option>`);
+                            if (item.penyakit) {
+                                penyakitDropdown.append(`<option value="${item.penyakit}">${item.penyakit}</option>`);
+                            }
                         });
                         data.bahan.forEach(function(item) {
-                            bahanDropdown.append(`<option value="${item.bahan_dasar}">${item.bahan_dasar}</option>`);
+                            if (item.bahan_dasar) {
+                                bahanDropdown.append(`<option value="${item.bahan_dasar}">${item.bahan_dasar}</option>`);
+                            }
                         });
                     }
                 });

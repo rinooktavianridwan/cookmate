@@ -41,4 +41,3 @@ class FavRecipeController extends Controller
         }
     }
 }
-

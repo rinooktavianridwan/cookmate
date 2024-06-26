@@ -32,8 +32,17 @@ class RecipeController extends Controller
 
     public function getUniqueValues()
     {
-        $uniqueBahan = Recipe::select('bahan_dasar')->distinct()->get();
-        $uniquePenyakit = Recipe::select('penyakit')->distinct()->get();
+        $uniqueBahan = Recipe::select('bahan_dasar')
+            ->distinct()
+            ->whereNotNull('bahan_dasar')
+            ->where('bahan_dasar', '!=', '')
+            ->get();
+
+        $uniquePenyakit = Recipe::select('penyakit')
+            ->distinct()
+            ->whereNotNull('penyakit')
+            ->where('penyakit', '!=', '')
+            ->get();
 
         return response()->json([
             'bahan' => $uniqueBahan,
