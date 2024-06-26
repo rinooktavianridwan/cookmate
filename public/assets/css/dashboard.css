@@ -7,6 +7,7 @@
     background-size: 20px 20px; /* Size of the icon */
     border: 1px solid #ccc; /* Optional: adds a border */
     height: 40px; /* Adjust based on your design */
+    width: 400px; /* Adjust based on your design */
 }
 
 /* Additional styling for focus state to improve UX */
