@@ -8,17 +8,17 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 cook-container" style="display: flex; flex-direction: column; align-items: center;">
-                    <h1>{{ $recipe->title }}</h1>
+                <div class="p-6 text-gray-900 cook-container">
+                    <h1 class="text-center" style="font-size: 28px; font-weight: 700;">{{ $recipe->title }}</h1>
                     <video id="recipe-video" src="{{ asset('assets/videos/betutu-pt1.mp4') }}" width="540" height="540" controls></video>
-                    <p>{{ $recipe->description }}</p>
+                    <p class="mt-4" style="font-size: 18px;">{{ $recipe->description }}</p>
 
                     <!-- Tampilkan instruksi satu per satu -->
-                    <div id="instruction-container">
-                        <h2>Instruction <span id="instruction-step">1</span></h2>
-                        <p id="instruction-content">{{ $recipe->instructions[0]->content }}</p>
+                    <div id="instruction-container" class="mt-4">
+                        <h2 style="font-size: 18px; font-weight: 700; text-align: left;">Instruction <span id="instruction-step">1</span></h2>
+                        <p id="instruction-content" style="font-size: 18px; text-align: left;">{{ $recipe->instructions[0]->content }}</p>
                     </div>
-                    <div class="navigation-buttons" id="nav-buttons">
+                    <div class="navigation-buttons mt-4" id="nav-buttons">
                         <button id="prev-btn" style="display: none;">Previous</button>
                         <button id="next-btn">Next</button>
                         <button id="finish-btn" style="display: none;">Selesai Memasak</button>
@@ -31,42 +31,14 @@
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const videoElement = document.getElementById('recipe-video');
-            const nextBtn = document.getElementById('next-btn');
-            const prevBtn = document.getElementById('prev-btn');
-            let currentStep = 1; // Mulai dari langkah pertama
-
-            nextBtn.addEventListener('click', function() {
-                currentStep++;
-                updateVideoSource();
-            });
-
-            prevBtn.addEventListener('click', function() {
-                if (currentStep > 1) {
-                    currentStep--;
-                    updateVideoSource();
-                }
-            });
-
-            function updateVideoSource() {
-                const videoSrc = '/assets/videos/betutu-pt${currentStep}.mp4';
-                videoElement.src = videoSrc;
-                document.getElementById('instruction-step').textContent = currentStep;
-                // Update konten instruksi jika diperlukan
-            }
-        });
-    </script>
-    <script>
         $(document).ready(function() {
-            var instructions = @json($recipe - > instructions);
+            var instructions = @json($recipe->instructions);
             var currentStep = 0;
 
             function updateInstruction() {
                 $('#instruction-step').text(currentStep + 1);
                 $('#instruction-content').text(instructions[currentStep].content);
 
-                // Show/hide navigation buttons based on current step
                 if (currentStep === 0) {
                     $('#prev-btn').hide();
                 } else {
@@ -81,7 +53,6 @@
                     $('#finish-btn').hide();
                 }
 
-                // Update button layout based on visible buttons
                 updateButtonLayout();
             }
 
@@ -122,7 +93,7 @@
             const videoElement = document.getElementById('recipe-video');
             const nextBtn = document.getElementById('next-btn');
             const prevBtn = document.getElementById('prev-btn');
-            let currentStep = 1; // Mulai dari langkah pertama
+            let currentStep = 1;
 
             nextBtn.addEventListener('click', function() {
                 currentStep++;
@@ -140,7 +111,6 @@
                 const videoSrc = `/assets/videos/betutu-pt${currentStep}.mp4`;
                 videoElement.src = videoSrc;
                 document.getElementById('instruction-step').textContent = currentStep;
-                // Update konten instruksi jika diperlukan
             }
         });
     </script>
@@ -148,35 +118,32 @@
         .cook-container {
             display: flex;
             flex-direction: column;
-            height: 600px;
+            align-items: center;
             gap: 10px;
-
         }
 
         .cook-container h1 {
-            text-align: center
+            text-align: center;
         }
 
-        .cook-container img {
-            height: 300px;
-            background-color: skyblue;
-
+        .cook-container video {
+            max-width: 100%;
+            height: auto;
         }
 
         #instruction-container {
             margin-top: 40px;
-            height: 180px;
+            width: 100%;
+            text-align: left; /* Menjamin teks instruksi selalu rata kiri */
         }
 
         .navigation-buttons {
             display: flex;
             justify-content: flex-end;
-            /* Default posisi tombol di kanan */
         }
 
         .navigation-buttons.space-between {
             justify-content: space-between;
-            /* Distribusi tombol jika ada dua */
         }
 
         .navigation-buttons button {
@@ -184,9 +151,8 @@
             height: 30px;
             width: 100px;
             margin-left: 10px;
-            /* Spasi antar tombol */
             background-color: black;
-            color: white
+            color: white;
         }
     </style>
 </x-app-layout>
