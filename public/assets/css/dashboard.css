@@ -1,7 +1,7 @@
 .search-text input[type="text"] {
     border-radius: 20px; /* Rounded corners */
     padding-left: 35px; /* Adjust based on the size of your search icon */
-    background-image: url('/assets/images/search.png'); /* Ensure correct path to your search icon */
+    background-image: url("/assets/images/search.png"); /* Ensure correct path to your search icon */
     background-position: 10px center; /* Center vertically */
     background-repeat: no-repeat; /* Prevent the icon from repeating */
     background-size: 20px 20px; /* Size of the icon */
@@ -13,6 +13,5 @@
 /* Additional styling for focus state to improve UX */
 .search-text input[type="text"]:focus {
     outline: none; /* Removes the default focus outline */
-    border-color: #4A90E2; /* Optional: changes border color on focus */
+    border-color: #4a90e2; /* Optional: changes border color on focus */
 }
-

@@ -115,12 +115,17 @@
                         var container = $('#recipe-container');
                         container.empty(); // Hapus konten sebelumnya
                         data.favorites.forEach(function(recipe) {
+                            // Dapatkan nama file gambar dari peta menggunakan ID resep
                             var imageName = recipeImageMap[recipe.id] || 'default.jpg'; // Gunakan 'default.jpg' jika ID tidak ditemukan
+
+                            // Tentukan teks untuk penyakit
+                            var penyakitText = recipe.penyakit ? recipe.penyakit : '-'; // Jika penyakit null, gunakan "-"
+
                             var item = `<div class="all-recipe" data-recipe-id="${recipe.id}">
                                             <div class="recipe-item" style="display: flex; align-items: flex-start; justify-content: space-between;">
                                                 <div style="flex: 3; margin-right: 20px;">
                                                     <h3 style="padding-bottom: 10px; font-size: 28px; font-weight: 700;">${recipe.title}</h3>
-                                                    <p style="margin-bottom: 10px; font-size: 18px; font-weight: 600; text-align: justify;">Baik untuk penderita penyakit: ${recipe.penyakit}</p>
+                                                    <p style="margin-bottom: 10px; font-size: 18px; font-weight: 600; text-align: justify;">Baik untuk penderita penyakit: ${penyakitText}</p>
                                                     <p style="margin-bottom: 10px; font-size: 18px; text-align: justify">${recipe.description}</p>
                                                     <div class="detail-button">
                                                         <a href="/recipes/${recipe.id}/description" class="btn btn-primary" style="font-size: 20px; font-weight: 600">See more</a>

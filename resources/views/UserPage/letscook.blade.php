@@ -31,35 +31,35 @@
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const videoElement = document.getElementById('recipe-video');
-        const nextBtn = document.getElementById('next-btn');
-        const prevBtn = document.getElementById('prev-btn');
-        let currentStep = 1; // Mulai dari langkah pertama
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoElement = document.getElementById('recipe-video');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            let currentStep = 1; // Mulai dari langkah pertama
 
-        nextBtn.addEventListener('click', function () {
-            currentStep++;
-            updateVideoSource();
-        });
-
-        prevBtn.addEventListener('click', function () {
-            if (currentStep > 1) {
-                currentStep--;
+            nextBtn.addEventListener('click', function() {
+                currentStep++;
                 updateVideoSource();
+            });
+
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateVideoSource();
+                }
+            });
+
+            function updateVideoSource() {
+                const videoSrc = '/assets/videos/betutu-pt${currentStep}.mp4';
+                videoElement.src = videoSrc;
+                document.getElementById('instruction-step').textContent = currentStep;
+                // Update konten instruksi jika diperlukan
             }
         });
-
-        function updateVideoSource() {
-            const videoSrc = '/assets/videos/betutu-pt${currentStep}.mp4';
-            videoElement.src = videoSrc;
-            document.getElementById('instruction-step').textContent = currentStep;
-            // Update konten instruksi jika diperlukan
-        }
-    });
-</script>
+    </script>
     <script>
         $(document).ready(function() {
-            var instructions = @json($recipe->instructions);
+            var instructions = @json($recipe - > instructions);
             var currentStep = 0;
 
             function updateInstruction() {
@@ -118,64 +118,73 @@
         });
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const videoElement = document.getElementById('recipe-video');
-        const nextBtn = document.getElementById('next-btn');
-        const prevBtn = document.getElementById('prev-btn');
-        let currentStep = 1; // Mulai dari langkah pertama
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoElement = document.getElementById('recipe-video');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            let currentStep = 1; // Mulai dari langkah pertama
 
-        nextBtn.addEventListener('click', function () {
-            currentStep++;
-            updateVideoSource();
-        });
-
-        prevBtn.addEventListener('click', function () {
-            if (currentStep > 1) {
-                currentStep--;
+            nextBtn.addEventListener('click', function() {
+                currentStep++;
                 updateVideoSource();
+            });
+
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateVideoSource();
+                }
+            });
+
+            function updateVideoSource() {
+                const videoSrc = `/assets/videos/betutu-pt${currentStep}.mp4`;
+                videoElement.src = videoSrc;
+                document.getElementById('instruction-step').textContent = currentStep;
+                // Update konten instruksi jika diperlukan
             }
         });
-
-        function updateVideoSource() {
-            const videoSrc = `/assets/videos/betutu-pt${currentStep}.mp4`;
-            videoElement.src = videoSrc;
-            document.getElementById('instruction-step').textContent = currentStep;
-            // Update konten instruksi jika diperlukan
-        }
-    });
-</script>
+    </script>
     <style>
-        .cook-container{
+        .cook-container {
             display: flex;
             flex-direction: column;
             height: 600px;
             gap: 10px;
-            
+
         }
-        .cook-container h1{
+
+        .cook-container h1 {
             text-align: center
         }
-        .cook-container img{
+
+        .cook-container img {
             height: 300px;
             background-color: skyblue;
 
         }
+
         #instruction-container {
             margin-top: 40px;
             height: 180px;
         }
+
         .navigation-buttons {
             display: flex;
-            justify-content: flex-end; /* Default posisi tombol di kanan */
+            justify-content: flex-end;
+            /* Default posisi tombol di kanan */
         }
+
         .navigation-buttons.space-between {
-            justify-content: space-between; /* Distribusi tombol jika ada dua */
+            justify-content: space-between;
+            /* Distribusi tombol jika ada dua */
         }
+
         .navigation-buttons button {
             border-radius: 5px;
             height: 30px;
             width: 100px;
-            margin-left: 10px; /* Spasi antar tombol */
+            margin-left: 10px;
+            /* Spasi antar tombol */
             background-color: black;
             color: white
         }
