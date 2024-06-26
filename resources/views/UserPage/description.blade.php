@@ -9,51 +9,50 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" style="padding: 50px;">
+                <div class="p-6 text-gray-900" style="padding: 0px;">
                     <h1 style="font-size: 28px; font-weight: 700;">{{ $recipe->title }}
-                        <i class="far fa-bookmark bookmark-icon {{ $recipe->isFavoritedByUser(auth()->user()) ? 'fas' : 'far' }}" 
-                            style="cursor: pointer; padding-left: 20px; color: {{ $recipe->isFavoritedByUser(auth()->user()) ? 'yellow' : '' }};">
+                        <i class="far fa-bookmark bookmark-icon {{ $recipe->isFavoritedByUser(auth()->user()) ? 'fas' : 'far' }}" style="cursor: pointer; margin-left: 350px; padding: 7.5px; color: {{ $recipe->isFavoritedByUser(auth()->user()) ? 'black' : '' }};">
                         </i>
                         <div style="display: flex; align-items: center; padding-top: 20px;">
-                            <img src="/assets/images/{{ $image }}" alt="Gambar {{ $recipe->title }}" style="width: 600px; height: 400px; object-fit: cover; margin-right: 20px; border: 3px solid white; border-radius: 8px; margin: 0 auto;">
+                            <img src="/assets/images/{{ $image }}" alt="Gambar {{ $recipe->title }}" style="width: 600px; height: 400px; object-fit: cover; margin-right: 20px; border: 3px solid white; border-radius: 8px; margin: 0 auto; border: 3px solid black">
                         </div>
                     </h1>
-                    <p style="font-size: 18px; padding-top: 20px">{{ $recipe->description }}</p>
+                    <p style="font-size: 18px; padding-top: 20px; text-align: justify;">{{ $recipe->description }}</p>
                     <!-- Tampilkan bahan-bahan -->
-                    <h2 style="padding-top: 20px; font-size: 18px; font-weight: 700;">Ingredients</h2>
+                    <h2 style="padding-top: 20px; font-size: 18px; font-weight: 700;">Bahan-bahan</h2>
                     <ul style="font-size: 18px;">
                         @foreach ($recipe->ingredients as $ingredient)
-                        <li>{{ $ingredient->name }} - {{ $ingredient->quantity }}</li>
+                        <li>{{ $ingredient->quantity }} {{ $ingredient->name }}</li>
                         @endforeach
                     </ul>
                     <!-- Tampilkan informasi gizi -->
                     @if ($recipe->nutritionFact)
-                    <h2 style="padding-top: 20px; font-size: 18px; font-weight: 700;">Nutrition Facts</h2>
+                    <h2 style="padding-top: 20px; font-size: 18px; font-weight: 700;">Nutrisi</h2>
                     <ul style="font-size: 18px;">
-                        <li>Calories: {{ $recipe->nutritionFact->calories }}</li>
+                        <li>Kalori: {{ $recipe->nutritionFact->calories }}</li>
                         <li>Protein: {{ $recipe->nutritionFact->protein }}g</li>
-                        <li>Fat: {{ $recipe->nutritionFact->fat }}g</li>
-                        <li>Carbohydrates: {{ $recipe->nutritionFact->carbohydrates }}g</li>
-                        <li>Sugar: {{ $recipe->nutritionFact->sugar }}g</li>
+                        <li>Lemak: {{ $recipe->nutritionFact->fat }}g</li>
+                        <li>Karbohisrat: {{ $recipe->nutritionFact->carbohydrates }}g</li>
+                        <li>Kadar gula: {{ $recipe->nutritionFact->sugar }}g</li>
                         <li>Sodium: {{ $recipe->nutritionFact->sodium }}mg</li>
                     </ul>
                     @endif
                     <!-- Tampilkan instruksi -->
-                    <h2 style="padding-top: 20px; font-size: 18px; font-weight: 700;">Instructions</h2>
-                    <ol style="font-size: 18px;">
+                    <h2 style="padding-top: 20px; font-size: 18px; font-weight: 700;">Langkah Pembuatan</h2>
+                    <ol style="font-size: 18px; text-align: justify">
                         @foreach ($recipe->instructions as $index => $instruction)
                         <li>{{ $index + 1 }}. {{ $instruction->content }}</li>
                         @endforeach
                     </ol>
                 </div>
-                <div class="button-des">
-                    <button id="start-cooking-btn" style="border: 1px solid black; border-radius: 5px; padding: 10px 20px; margin-left: 25px; background-color: #EEE2BC;">Mulai Memasak</button>
+                <div class="button-des" style="display:flex; align-items: center; justify-content: center;">
+                    <button id="start-cooking-btn" style="border-radius: 25px; margin-top: 20px; padding: 10px 20px; background-color: #EEE2BC; font-weight: 600">Mulai Memasak</button>
                 </div>
                 <div class="text-center">
-                    <p style="font-size: 18px; padding-top: 20px;">Suka masakan ini? Berikan Review mu ya!</p>
+                    <p style="font-size: 18px; padding-top: 30px;">Suka masakan ini? Berikan Review mu ya!</p>
                 </div>
-                <div class="rate-container" style="text-align: center; margin-top: 20px;">
+                <div class="rate-container" style="text-align: center;">
                     <div class="rate" style="margin: 0 auto; display: inline-block;">
                         @php
                         $userReview = auth()->user()->reviews()->where('recipe_id', $recipe->id)->first();
@@ -64,7 +63,7 @@
                         @endfor
                     </div>
                     <div style="margin-bottom: 10px;">
-                        <button id="submit-review" style="border: 1px solid black; border-radius: 5px; padding: 10px 20px; background-color: #EEE2BC;">Submit Review</button>
+                        <button id="submit-review">Submit Review</button>
                     </div>
                 </div>
             </div>
@@ -92,7 +91,7 @@
                             if (response.status === 'added') {
                                 bookmarkIcon.classList.remove('far');
                                 bookmarkIcon.classList.add('fas');
-                                bookmarkIcon.style.color = 'yellow';
+                                bookmarkIcon.style.color = 'black';
                             } else {
                                 bookmarkIcon.classList.remove('fas');
                                 bookmarkIcon.classList.add('far');
@@ -131,6 +130,16 @@
                             alert('An error occurred. Please try again.');
                         }
                     }
+                });
+            });
+
+            $(document).ready(function() {
+                $('.rate label').click(function(event) {
+                    event.preventDefault(); // Mencegah perilaku default dari label
+
+                    // Lakukan apa pun yang diperlukan saat label bintang diklik
+                    var starId = $(this).attr('for');
+                    $('#' + starId).prop('checked', true); // Pastikan radio button tercentang
                 });
             });
         });
