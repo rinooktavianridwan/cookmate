@@ -8,9 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 cook-container">
+                <div class="p-6 text-gray-900 cook-container" style="display: flex; flex-direction: column; align-items: center;">
                     <h1>{{ $recipe->title }}</h1>
-                    <img src="https://media.istockphoto.com/id/1313021528/id/foto/kucing-berburu-tikus-di-rumah-kucing-burma-menghadapi-sebelum-menyerang-close-up.jpg?s=1024x1024&w=is&k=20&c=mn5XtMPMgKpNPJG9WmxooFHYNnQK0LpV2ALL0KIKiwM=" alt="">
+                    <video id="recipe-video" src="{{ asset('assets/videos/betutu-pt1.mp4') }}" width="540" height="540" controls></video>
                     <p>{{ $recipe->description }}</p>
 
                     <!-- Tampilkan instruksi satu per satu -->
@@ -30,6 +30,33 @@
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const videoElement = document.getElementById('recipe-video');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        let currentStep = 1; // Mulai dari langkah pertama
+
+        nextBtn.addEventListener('click', function () {
+            currentStep++;
+            updateVideoSource();
+        });
+
+        prevBtn.addEventListener('click', function () {
+            if (currentStep > 1) {
+                currentStep--;
+                updateVideoSource();
+            }
+        });
+
+        function updateVideoSource() {
+            const videoSrc = '/assets/videos/betutu-pt${currentStep}.mp4';
+            videoElement.src = videoSrc;
+            document.getElementById('instruction-step').textContent = currentStep;
+            // Update konten instruksi jika diperlukan
+        }
+    });
+</script>
     <script>
         $(document).ready(function() {
             var instructions = @json($recipe->instructions);
@@ -90,6 +117,33 @@
             updateInstruction();
         });
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const videoElement = document.getElementById('recipe-video');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        let currentStep = 1; // Mulai dari langkah pertama
+
+        nextBtn.addEventListener('click', function () {
+            currentStep++;
+            updateVideoSource();
+        });
+
+        prevBtn.addEventListener('click', function () {
+            if (currentStep > 1) {
+                currentStep--;
+                updateVideoSource();
+            }
+        });
+
+        function updateVideoSource() {
+            const videoSrc = `/assets/videos/betutu-pt${currentStep}.mp4`;
+            videoElement.src = videoSrc;
+            document.getElementById('instruction-step').textContent = currentStep;
+            // Update konten instruksi jika diperlukan
+        }
+    });
+</script>
     <style>
         .cook-container{
             display: flex;
